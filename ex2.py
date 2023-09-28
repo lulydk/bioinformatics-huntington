@@ -6,7 +6,7 @@ from Bio import SeqIO
 
 def perform_blast(sequence, output_file):
     """Realiza un BLAST de una secuencia y guarda los resultados en un archivo."""
-    result_handle = NCBIWWW.qblast("blastn", "nt", sequence, format_type="Text")    # base de datos "nt" (nucleotide), salida tipo .out
+    result_handle = NCBIWWW.qblast("blastp", "nr", sequence, format_type="Text")
     with open(output_file, "w", encoding="utf8") as output_handle:
         output_handle.write(result_handle.read())
     result_handle.close()
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     parser.add_argument("--input", required=True, help="The input FASTA file name.")
     parser.add_argument("--output", required=False, help="The output file name.")
     args = parser.parse_args()
-    INPUT_FAS_FILE = f"output/fasta_{args.input}.fas"
+    INPUT_FAS_FILE = f"output/fastaV2_{args.input}.fas"
     if args.output is None:
         OUTPUT_FILE = f"output/blast_{args.input}.out"
     else:
