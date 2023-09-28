@@ -29,4 +29,28 @@ Utilizando el [Homo sapiens prion protein (PRNP), transcript variant 1, mRNA - N
 python3 ex1.py --input='NM_000311-5'
 ```
 
-El resultado estará en output/output_NM_000311-5.fas
+El resultado estará en `output/fasta_NM_000311-5.fas`
+
+## Ejercicio 2
+
+Aplica BLAST (online vía BioPython) a una secuencia de aminoácidos en formato FASTA, y escribe el resultado en un archivo de texto plano.
+
+### Uso
+
+Por línea de comando:
+
+```bash
+python3 ex2.py --input *NCBI_REF_SEQ* [ --output *OUTPUT_FILENAME* ]
+```
+
+De no especificar nombre del archivo de salida, se utiliza el mismo código provisto en el input.
+
+### Ejemplo
+
+Utilizando el archivo creado en el punto anterior:
+
+```bash
+python3 ex2.py --input "NM_000311-5"
+```
+
+El resultado estará en `output/blast_NM_000311-5.out`
