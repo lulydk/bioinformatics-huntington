@@ -4,10 +4,6 @@ import argparse
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 
-def translate_sequence(dna_sequence):
-    """Función para traducir una secuencia de nucleótidos a una secuencia de aminoácidos."""
-    return dna_sequence.translate()
-
 def main(input_genbank_file, output_fasta_file):
     """Traduce features CDS de un archivo GenBank a una secuencia de aminoácidos en formato FASTA."""
     translated_sequences = []
@@ -16,7 +12,7 @@ def main(input_genbank_file, output_fasta_file):
             for feature in record.features:
                 if feature.type == "CDS":
                     nucleotide_sequence = feature.location.extract(record).seq      # obtengo secuencia de nucleótidos indicada por el record
-                    amino_acid_sequence = translate_sequence(nucleotide_sequence)
+                    amino_acid_sequence = nucleotide_sequence.translate()
                     fasta_record = SeqRecord(amino_acid_sequence, id=feature.qualifiers.get("gene")[0])     # creo un registro FASTA con la secuencia traducida
                     translated_sequences.append(fasta_record)
     with open(output_fasta_file, "w", encoding="utf8") as fasta_handle:
