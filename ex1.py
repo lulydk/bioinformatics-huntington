@@ -30,7 +30,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     INPUT_GB_FILE = f"input/{args.input}.gb"
     if args.output is None:
-        OUTPUT_FAS_FILE = f"output/output_{args.input}.fas"
+        OUTPUT_FAS_FILE = f"output/fasta_{args.input}.fas"
     else:
         OUTPUT_FAS_FILE = f"output/{args.output}.fas"
     main(INPUT_GB_FILE, OUTPUT_FAS_FILE)
