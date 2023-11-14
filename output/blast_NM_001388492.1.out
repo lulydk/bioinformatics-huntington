@@ -20,7 +20,7 @@ compositionally adjusted substitution matrices", FEBS J.
 272:5101-5109.
 
 
-RID: N7SRK5E9013
+RID: N7SUN5JV013
 
 
 Database: All non-redundant GenBank CDS
@@ -11004,13 +11004,13 @@ Lambda      K        H
 Matrix: BLOSUM62
 Gap Penalties: Existence: 11, Extension: 1
 Number of Sequences: 632876982
-Number of Hits to DB: 444820819
-Number of extensions: 3483912
-Number of successful extensions: 1831800
-Number of sequences better than 100: 16181
+Number of Hits to DB: 444647819
+Number of extensions: 3477202
+Number of successful extensions: 1824508
+Number of sequences better than 100: 16020
 Number of HSP's better than 100 without gapping: 0
-Number of HSP's gapped: 1224128
-Number of HSP's successfully gapped: 49934
+Number of HSP's gapped: 1226517
+Number of HSP's successfully gapped: 50652
 Length of query: 3142
 Length of database: 247825979682
 Length adjustment: 186

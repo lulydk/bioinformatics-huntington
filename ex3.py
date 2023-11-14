@@ -1,7 +1,5 @@
 
 from Bio.Blast import NCBIXML
-from Bio.Align.Applications import ClustalOmegaCommandline
-from Bio import AlignIO
 from Bio.pairwise2 import format_alignment
 from Bio import pairwise2
 from Bio import SeqIO
