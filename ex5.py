@@ -1,5 +1,6 @@
 import argparse
 import random
+import primer3
 
 
 def generar_primers(sequence, num_primers=5, longitud_min=18, longitud_max=24, gc_min=50, gc_max=60, tm_max=67):
@@ -25,7 +26,48 @@ def generar_primers(sequence, num_primers=5, longitud_min=18, longitud_max=24, g
 
     return primers_found
 
+def extract_primers_info(primers_dict):
+    extracted_primers = []
 
+    for i, left_primer_info in enumerate(primers_dict['PRIMER_LEFT']):
+        right_primer_info = primers_dict['PRIMER_RIGHT'][i]
+
+        # Verificar condiciones adicionales si es necesario
+        if (
+            left_primer_info['GC_PERCENT'] >= 50.0 and
+            left_primer_info['GC_PERCENT'] <= 60.0 and
+            right_primer_info['GC_PERCENT'] >= 50.0 and
+            right_primer_info['GC_PERCENT'] <= 60.0 and
+            left_primer_info['TM'] <= 67.0 and
+            right_primer_info['TM'] <= 67.0 and
+            left_primer_info['SEQUENCE'][0] not in {'c', 'g'} and
+            right_primer_info['SEQUENCE'][-1] not in {'g', 'c'}
+        ):
+            extracted_primers.append((left_primer_info['SEQUENCE'], right_primer_info['SEQUENCE']))
+
+    return extracted_primers
+def design_specific_primers(sequence, num_primers=5):
+    primers_found = []
+    # Configuración de los parámetros para Primer3
+    while len(primers_found) < num_primers:
+        seq_args = {
+                'SEQUENCE_ID': f'my_sequence_{len(primers_found) + 1}',
+                'SEQUENCE_TEMPLATE': sequence,
+                'PRIMER_OPT_SIZE': random.randint(18, 24),
+                'PRIMER_MIN_SIZE': 18,
+                'PRIMER_MAX_SIZE': 24,
+                'PRIMER_OPT_TM': random.uniform(55.0, 65.0),
+                'PRIMER_MIN_TM': 55.0,
+                'PRIMER_MAX_TM': 65.0,
+                'PRIMER_MIN_GC': 50.0,
+                'PRIMER_MAX_GC': 60.0,
+                'PRIMER_PRODUCT_SIZE_RANGE': [(100, 300)],
+        }
+        # Diseño de primers con Primer3
+        potential_primers = primer3.bindings.design_primers(seq_args, {})
+        primers_info= extract_primers_info(potential_primers)
+        primers_found.extend(primers_info)
+    return primers_found
 def get_sequence(input_file):
     sequence = ''
     with open(input_file, "r") as archivo:
@@ -54,10 +96,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     INPUT_GB_FILE = f"input/{args.input}.gb"
-    OUTPUT_PRIMERS_FILE = args.output or f"output/primers_output_{args.input}.txt"
+    # OUTPUT_PRIMERS_FILE_RAND = args.output or f"output/primers_output_rand{args.input}.txt"
+    OUTPUT_PRIMERS_FILE_PRIMER3 = args.output or f"output/primers_output{args.input}.txt"
 
     my_sequence = get_sequence(INPUT_GB_FILE)
-    primers = generar_primers(my_sequence, num_primers=5)
-
-    write_primers(primers, OUTPUT_PRIMERS_FILE)
-    print(f"Primers generados fueron escritos en '{OUTPUT_PRIMERS_FILE}'.")
+    # primers = generar_primers(my_sequence, num_primers=5)
+    primers_3 = design_specific_primers(my_sequence)
+    write_primers(primers_3, OUTPUT_PRIMERS_FILE_PRIMER3)
+    print(f"Primers generados fueron escritos en '{OUTPUT_PRIMERS_FILE_PRIMER3}'.")
