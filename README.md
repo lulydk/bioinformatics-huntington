@@ -54,3 +54,27 @@ python3 ex2.py --input "NM_000311-5"
 ```
 
 El resultado estará en `output/blast_NM_000311-5.out`
+
+## Ejercicio 3
+
+Por línea de comando:
+
+```bash
+python3 ex3.py -x <XML_FILE> -i <FASTA_FILE> -o <MSA_FILE>
+```
+
+## Ejercicio 4
+
+Por línea de comando:
+
+```bash
+python3 ex4.py --input=<ARCHIVO_FASTA> --output=<ANALISIS_DOM>
+```
+
+## Ejercicio 5
+
+Por línea de comando:
+
+```bash
+python3 ex5.py --input=<ARCHIVO_GENBANK> --output=<PRIMERS>
+```
