@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
     INPUT_GB_FILE = f"input/{args.input}.gb"
     # OUTPUT_PRIMERS_FILE_RAND = args.output or f"output/primers_output_rand{args.input}.txt"
-    OUTPUT_PRIMERS_FILE_PRIMER3 = args.output or f"output/{args.output}.txt"
+    OUTPUT_PRIMERS_FILE_PRIMER3 = f"output/{args.output}.txt"
 
     my_sequence = get_sequence(INPUT_GB_FILE)
     # primers = generar_primers(my_sequence, num_primers=5)
