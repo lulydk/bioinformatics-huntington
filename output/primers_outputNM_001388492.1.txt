@@ -1,0 +1,5 @@
+('tcgtcagcttggttccca', 'tcctcttgcttggtggct')
+('tcgtcagcttggttccca', 'gctgcctttattgcgggt')
+('agccaccaagcaagagga', 'gctgcctttattgcgggt')
+('tcatgcagccctgtcctt', 'aagtcacagctggccaga')
+('ttcctcatgcagccctgt', 'aagtcacagctggccaga')

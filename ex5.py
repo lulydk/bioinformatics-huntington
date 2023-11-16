@@ -92,15 +92,15 @@ def write_primers(primers, output_file):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate primers from a DNA sequence.")
     parser.add_argument("--input", required=True, help="The input GenBank file name.")
-    parser.add_argument("--output", required=False, help="The output file name for primers.")
+    parser.add_argument("--output", required=False, help="The output txt file name for primers.")
     args = parser.parse_args()
 
     INPUT_GB_FILE = f"input/{args.input}.gb"
     # OUTPUT_PRIMERS_FILE_RAND = args.output or f"output/primers_output_rand{args.input}.txt"
-    OUTPUT_PRIMERS_FILE_PRIMER3 = args.output or f"output/primers_output{args.input}.txt"
+    OUTPUT_PRIMERS_FILE_PRIMER3 = args.output or f"output/{args.output}.txt"
 
     my_sequence = get_sequence(INPUT_GB_FILE)
     # primers = generar_primers(my_sequence, num_primers=5)
-    primers_3 = design_specific_primers(my_sequence)
+    primers_3 = design_specific_primers(my_sequence,5)
     write_primers(primers_3, OUTPUT_PRIMERS_FILE_PRIMER3)
     print(f"Primers generados fueron escritos en '{OUTPUT_PRIMERS_FILE_PRIMER3}'.")

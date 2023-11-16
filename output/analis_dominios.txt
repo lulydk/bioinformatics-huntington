@@ -1,11 +1,11 @@
 ########################################
 # Program: patmatmotifs
-# Rundate: Tue 14 Nov 2023 20:23:32
+# Rundate: Thu 16 Nov 2023 10:54:18
 # Commandline: patmatmotifs
-#    -sequence ./output/fastaV2_NM_001388492.1.fas
-#    -outfile ./output/resultados_prosite.txt
+#    -sequence input/fastaV2_NM_001388492.1.fas
+#    -outfile output/analis_dominios.txt
 # Report_format: dbmotif
-# Report_file: ./output/resultados_prosite.txt
+# Report_file: output/analis_dominios.txt
 ########################################
 
 #=======================================

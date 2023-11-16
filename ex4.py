@@ -1,3 +1,4 @@
+import argparse
 import subprocess
 
 # Paso 1: Análisis de ORFs
@@ -20,11 +21,19 @@ def analisis_dominios(input_file, output_file):
 
 if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser(description="Translate CDS features from GenBank file to FASTA amino acid sequences.")
+    parser.add_argument("--input", required=True, help="The input FASTA file name.")
+    parser.add_argument("--output", required=False, help="The output txt file name.")
+    args = parser.parse_args()
+
+    INPUT_GB_FILE = f"input/{args.input}.fas"
+    OUTPUT_FAS_FILE = f"output/{args.output}.txt"
+
     # Ejecutar el análisis de ORFs
-    analisis_orfs("./input/NM_001388492.1.gb", "./output/secuencia_orfs.fasta")
+    analisis_orfs("/input/NM_001388492.1.gb", "/output/secuencia_orfs.fasta")
 
     # Descargar motivos de PROSITE
     descargar_prosite_motivos()
 
     # Ejecutar el análisis de dominios de secuencias de aminoácidos
-    analisis_dominios("./output/fastaV2_NM_001388492.1.fas", "output/analis_dominios.txt")
+    analisis_dominios(INPUT_GB_FILE, OUTPUT_FAS_FILE)
