@@ -3,11 +3,11 @@ import random
 import primer3
 
 
-def generar_primers(sequence, num_primers=5, longitud_min=18, longitud_max=24, gc_min=50, gc_max=60, tm_max=67):
+def generate_primers(sequence, num_primers=5, min_length=18, max_length=24, gc_min=50, gc_max=60, tm_max=67):
     primers_found = []
 
     while len(primers_found) < num_primers:
-        longitud = random.randint(longitud_min, longitud_max)
+        longitud = random.randint(min_length, max_length)
         start_index = random.randint(0, len(sequence) - longitud)
 
         primer_candidate = sequence[start_index:start_index + longitud]

@@ -2,11 +2,11 @@ import argparse
 import subprocess
 
 # Paso 1: Análisis de ORFs
-def analisis_orfs(input_file, output_file):
+def analyze_orfs(input_file, output_file):
     subprocess.run(["getorf", "-sequence", input_file, "-outseq", output_file])
 
 # Paso 2: Descarga de motivos de PROSITE
-def descargar_prosite_motivos(propositedir="prosite"):
+def download_prosite_motifs(propositedir="prosite"):
     subprocess.run(["wget","https://ftp.expasy.org/databases/prosite/prosite.dat"])
     subprocess.run(["wget","https://ftp.expasy.org/databases/prosite/prosite.doc"])
     subprocess.run(["chmod","775"])
@@ -16,7 +16,7 @@ def descargar_prosite_motivos(propositedir="prosite"):
     subprocess.run(["prosextract", propositedir])
 
 # Paso 3: Análisis de dominios de secuencias de aminoácidos
-def analisis_dominios(input_file, output_file):
+def analyze_domains(input_file, output_file):
     subprocess.run(["patmatmotifs", "-sequence", input_file, "-outfile", output_file])
 
 if __name__ == "__main__":
@@ -30,10 +30,10 @@ if __name__ == "__main__":
     OUTPUT_FAS_FILE = f"output/{args.output}.txt"
 
     # Ejecutar el análisis de ORFs
-    analisis_orfs("/input/NM_001388492.1.gb", "/output/secuencia_orfs.fasta")
+    analyze_orfs("/input/NM_001388492.1.gb", "/output/secuencia_orfs.fasta")
 
     # Descargar motivos de PROSITE
-    descargar_prosite_motivos()
+    download_prosite_motifs()
 
     # Ejecutar el análisis de dominios de secuencias de aminoácidos
-    analisis_dominios(INPUT_GB_FILE, OUTPUT_FAS_FILE)
+    analyze_domains(INPUT_GB_FILE, OUTPUT_FAS_FILE)
